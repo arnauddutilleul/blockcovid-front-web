@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import QRContext from '../../contexts/QRContext'
+import QRContext from '../../contexts/CovidBlockContext'
 
 const Gestion = () => {
     const {getAllQRLieu,listeQRCode} = useContext(QRContext)

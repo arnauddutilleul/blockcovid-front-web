@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import qrService from '../services/QRServices'
+import qrService from '../services/CovidBlockServices'
 
 const Context = React.createContext(null)
 

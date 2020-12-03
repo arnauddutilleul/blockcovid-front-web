@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProviderWrapper as QRProvider} from '../../contexts/QRContext'
+import { ProviderWrapper as QRProvider} from '../../contexts/CovidBlockContext'
 import App from './App'
 
 const AppContainer = () => {
