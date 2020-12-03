@@ -8,22 +8,60 @@ const ProviderWrapper = (props) => {
     const [email_utilisateur,setEmailUtilisateur]  = useState("")
     const [type,setType] = useState("")
     const [token,setToken] = useState("")
+    
+    //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
-        qrService.getAllQRLieu()
+        qrService.getAllQRLieu(token)
         .then(liste => setListQRCode(liste))
         .catch(error=>{
             console.log("Unable to load data",error)
         })
     }
 
-    const seConnecter = (type,email,mdp) => {
-        qrService.seConnecter(type,email,mdp)
+
+    //s'inscrire 
+    const sInscrire = (inscription) => {
+        qrService.sInscrire(inscription)
+        .then(data=>{
+            setEmailUtilisateur(data.email)
+            setToken(data.token)
+            setType(data.type)
+        })
+        .catch(error=>{
+            console.log("erreur inscritpion ",error)
+        })
+    }
+    //se connecter
+    const seConnecter = (connexion) => {
+        qrService.seConnecter(connexion)
         .then(data => {
             setEmailUtilisateur(data.email)
             setToken(data.token)
             setType(data.type)
         })
+        .catch(error=>{
+            console.log("erreur connexion ",error)
+        })
     }
+
+    //se deconnecter
+    const seDeconnecter= () => {
+        setEmailUtilisateur()
+        setListQRCode()
+        setType()
+        setToken()
+    }
+
+    //creer un qrcode pour un lieu 
+    const creerQRCodeLieu = (qrcode) => {
+        qrService.creerQRCodeLieu(token,qrcode)
+        .then(getAllQRLieu())
+        .catch(error=>{
+            console.log("erreur pour créer un nouveau QRCODE ",error)
+        })
+    }
+
+
     const exposeValue = {
         listeQRCode,
         type,
@@ -31,7 +69,10 @@ const ProviderWrapper = (props) => {
         email_utilisateur,
         getAllQRLieu,
         setListQRCode,
-        seConnecter
+        seConnecter,
+        sInscrire,
+        seDeconnecter,
+        creerQRCodeLieu
     }
 
     return(
