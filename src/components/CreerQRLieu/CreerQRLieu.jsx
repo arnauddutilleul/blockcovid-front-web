@@ -20,17 +20,24 @@ const CreerQRLieu = () =>{
     }
     else{
         return(
-            <form onSubmit={handlerSubmit}>
-                <div>
-                    <label>Nom du QR Code : </label>
-                    <input type="text" name="nom"/>
+            <div class="container">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4 mt-1">Création d'un nouveau QR Code</h4>
+                        <form onSubmit={handlerSubmit}>
+                            <div class="form-group">
+                                <label>Nom du QR Code</label>
+                                <input type="text" name="nom" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" name="description" class="form-control"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary ">Créer</button>
+                        </form>
+                    </div>
                 </div>
-                <div>
-                    <label>Description : </label>
-                    <input type="text" name="description"/>
-                </div>
-                <button type="submit" class="btn btn-primary">Créer</button>
-            </form>
+            </div>
         )
     }
     

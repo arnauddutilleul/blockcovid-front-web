@@ -5,9 +5,9 @@ const Context = React.createContext(null)
 
 const ProviderWrapper = (props) => {
     const [listeQRCode,setListQRCode] = useState([])
-    const [email_utilisateur,setEmailUtilisateur]  = useState("")
-    const [type,setType] = useState("")
-    const [token,setToken] = useState("")
+    const [email_utilisateur,setEmailUtilisateur]  = useState()
+    const [type,setType] = useState()
+    const [token,setToken] = useState()
     
     //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
