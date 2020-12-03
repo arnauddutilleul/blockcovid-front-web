@@ -8,7 +8,7 @@ const App = () => {
     return(
         <Router>
             <div>
-                <Link to="/">Se connecter</Link>
+                <Link to="/">Se connecter </Link>
                 <Link to="/gestion">Gestion</Link>
             </div>
             <Switch>
