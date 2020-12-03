@@ -18,13 +18,15 @@ const Login = () => {
         return(
             <div>
                 <form onSubmit={handlerSubmit}>
-                    <label>E-mail</label>
-                    <input type="text" name="email"/>
-                    <br/>
-                    <label>Mot de passe</label>
-                    <input type="password" name="mdp" />
-                    <br/>
-                    <button type="submit">Se connecter</button>
+                    <div class='form-group'>
+                        <label for="email">E-mail</label>
+                        <input class="form-control" type="text" id="email" name="email"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="mdp">Mot de passe</label>
+                        <input class="form-control" type="password" id="mdp" name="mdp" />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Se connecter</button>
                 </form>
             </div>
         )
