@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useState} from 'react'
 import qrService from '../services/QRServices'
 
 const Context = React.createContext(null)
@@ -13,10 +13,10 @@ const ProviderWrapper = (props) => {
             console.log("Unable to load data",error)
         })
     }
-    useEffect(getAllQRLieu,[])
     const exposeValue = {
         listeQRCode,
-        getAllQRLieu
+        getAllQRLieu,
+        setListQRCode
     }
 
     return(

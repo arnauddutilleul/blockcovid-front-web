@@ -1,9 +1,11 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import QRContext from '../../contexts/QRContext'
 
 const Gestion = () => {
-    const {listeQRCode} = useContext(QRContext)
-
+    const {getAllQRLieu,listeQRCode} = useContext(QRContext)
+    useEffect(() =>{
+        getAllQRLieu()
+    })
     return(
         <div>
             C'est ici qu'on pourra voir ses QR code et en créer.
