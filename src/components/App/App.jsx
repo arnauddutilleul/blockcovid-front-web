@@ -5,7 +5,7 @@ import Inscription from '../Inscription/Inscription'
 import Gestion from '../Gestion/Gestion'
 import Header from '../Header/Header'
 import Deconnexion from '../Deconnexion/Deconnexion'
-import CreerQRLieu from '../CreerQRLieu/CreerQRLieu'
+import Accueil from '../Accueil/Accueil'
 
 const App = () => {
     return(
@@ -13,7 +13,7 @@ const App = () => {
             <Header Link={Link}/>
             <Switch>
                 <Route path="/gestion">
-                    <Gestion Link={Link}/>
+                    <Gestion />
                 </Route>
                 <Route path="/connexion">
                     <Login/>
@@ -24,11 +24,8 @@ const App = () => {
                 <Route path="/deconnexion">
                     <Deconnexion/>
                 </Route>
-                <Route path="/creerqr">
-                    <CreerQRLieu/>
-                </Route>
                 <Route path="/">
-                    <h1>Bonjour</h1>
+                    <Accueil/>
                 </Route>
             </Switch>
         </Router>

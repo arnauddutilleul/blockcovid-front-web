@@ -24,26 +24,20 @@ const Header = ({Link}) => {
     }
     else{
         return(
-            <div>
-                <nav class="navbar navbar-expand-lg navbar-black bg-dark">
-                    <Link to="/" class="navbar-brand"><img  className="logoNav" alt="logo" src={logo}/></Link>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav d-flex">
-                        <li class="my-2 ml-auto p-2">
-                            <h4><Link to="/connexion" class="nav-link badge badge-secondary">Se connecter</Link></h4>
-                        </li>
-                        <li class="my-2 ml-auto p-2">
-                            <h4><Link to="/inscription" class="nav-link badge badge-secondary">S'inscrire</Link></h4>
-                        </li>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="/"><img alt="logo" src={logo} class="logoNav"/></a>
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/connexion">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/inscription">S'inscrire</a>
+                    </li>
+                    
                     </ul>
-                    </div>
-                
-               
-                </nav>
-            </div>
+                </div>
+            </nav>
         )
     }
     
