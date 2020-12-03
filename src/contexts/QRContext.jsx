@@ -13,7 +13,7 @@ const ProviderWrapper = (props) => {
             console.log("Unable to load data",error)
         })
     }
-    useEffect(getQRLieu,[])
+    useEffect(getAllQRLieu,[])
     const exposeValue = {
         listeQRCode,
         getAllQRLieu

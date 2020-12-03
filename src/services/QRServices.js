@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const baseUrl = ''
+
 
 const getAllQRLieu = () => {
-    const request = axios.get(baseUrl)
+    const request = axios.get('/qrcode')
     return request.then(response=>response.data)
 }
 
