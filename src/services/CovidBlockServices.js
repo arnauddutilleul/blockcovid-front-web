@@ -5,25 +5,41 @@ const URI = "https://api-blockcovid.herokuapp.com"
 
 
 const getAllQRLieu = (token) => {
-    const request = axios.get(URI+'/qrcode',token)
+    const request = axios.get(URI+'/qrcodelieu/all',token)
     return request.then(response=>response.data)
 }
-const creerQRCodeLieu = (token,qrcode) => {
-    const request = axios.post(URI+'/creerqrlieu',token,qrcode)
+const creerQRCodeLieu = (data) => {
+    const request = axios.post(URI+'/creerqrlieu',data)
     return request.then(response=>response.data)
 }
-const seConnecter = (connexion) => {
-    const request = axios.post(URI+'/connexion',connexion)
+const creerQRCodeMedecin = (data) => {
+    const request = axios.post(URI+'/creerqrmedecin',data)
+    return request.then(response=>response.data)
+}
+const seConnecterEtablissement = (data) => {
+    const request = axios.post(URI+'/etablissement/connexion',data)
+    return request.then(response => response.data)
+}
+const seConnecterMedecin = (data) => {
+    const request = axios.post(URI+'/medecin/connexion',data)
     return request.then(response => response.data)
 }
 const inscrireEtablissement = (data) => {
     const request = axios.post(URI+'/etablissement/create',data)
     return request.then(response => response.data)
 }
-const inscrireMedecin = (inscription) => {
-    const request = axios.post(URI+'/medecin/create',inscription)
+const inscrireMedecin = (data) => {
+    const request = axios.post(URI+'/medecin/create',data)
     return request.then(response => response.data)
 }
 
 
-export default {getAllQRLieu,creerQRCodeLieu,seConnecter,inscrireEtablissement,inscrireMedecin}
+export default {
+    getAllQRLieu,
+    creerQRCodeLieu,
+    creerQRCodeMedecin,
+    seConnecterEtablissement,
+    seConnecterMedecin,
+    inscrireEtablissement,
+    inscrireMedecin
+}

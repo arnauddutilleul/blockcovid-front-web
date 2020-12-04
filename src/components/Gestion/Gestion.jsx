@@ -1,27 +1,25 @@
 import React, { useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
-import CreerQRLieu from '../CreerQRLieu/CreerQRLieu'
-import ListeQRCodeLieu from '../ListeQRCode/ListeQRCodeLieu'
+import Etablissement from '../Etablissement/Etablissement'
+import Medecin from '../Medecin/Medecin'
+
 
 const Gestion = () => {
-    const {token} = useContext(CovidBlockContext)
+    const {token,type} = useContext(CovidBlockContext)
     
-    if(token){// inverser tant que pas poss de connexion
+    if(!(token)){// inverser tant que pas poss de connexion
         return(<Redirect to='/'/>)
        
     }
+    else if(type === "etablissement"){
+        return(
+            <Etablissement/>
+        )
+    }
     else{
         return(
-            <div class="container">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4 mt-1">Gestion</h4>
-                        <CreerQRLieu />
-                        <ListeQRCodeLieu />
-                    </div>
-                </div>
-            </div>
+            <Medecin/>
         )
     }
     

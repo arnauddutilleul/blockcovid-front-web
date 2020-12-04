@@ -9,10 +9,10 @@ const Login = () => {
         e.preventDefault()
         const connexion = {
             email : e.target.email.value,
-            mdp : e.target.mdp.value,
-            type : e.target.type.value
+            motDePasse : e.target.mdp.value,
+            
         }
-        seConnecter(connexion)
+        seConnecter(connexion,e.target.type.value)
         .then(token => {
             if(token){
                 setRedirection(true)
@@ -23,7 +23,7 @@ const Login = () => {
 
     if(redirection || token){
         return(
-            <Redirect to="/gestion"/>
+            <Redirect to="/"/>
         )
     }
     else{

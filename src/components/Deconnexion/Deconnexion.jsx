@@ -6,6 +6,9 @@ import CovidBlockContext from '../../contexts/CovidBlockContext'
 const Deconnexion = () => {
     const {seDeconnecter} = useContext(CovidBlockContext)
     seDeconnecter()
+    .then(() => {
     return(<Redirect to="/"/>)
+    })
+    
 }
 export default Deconnexion

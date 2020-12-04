@@ -1,5 +1,5 @@
 import React from 'react'
-import  {BrowserRouter as Router,Switch, Route,Link} from "react-router-dom"
+import  {BrowserRouter as Router,Switch, Route} from "react-router-dom"
 import Login from '../Connexion/Connexion'
 import Inscription from '../Inscription/Inscription'
 import Gestion from '../Gestion/Gestion'
@@ -10,7 +10,7 @@ import Accueil from '../Accueil/Accueil'
 const App = () => {
     return(
         <Router>
-            <Header Link={Link}/>
+            <Header/>
             <Switch>
                 <Route path="/gestion">
                     <Gestion />

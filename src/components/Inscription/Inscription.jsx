@@ -25,7 +25,7 @@ const Inscription = () => {
 
     if(redirection || token){
         return(
-            <Redirect to="/gestion"/>
+            <Redirect to="/"/>
         )
     }
     else{

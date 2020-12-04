@@ -7,7 +7,7 @@ import CovidBlockContext from '../../contexts/CovidBlockContext'
 const ListeQRCodeLieu = () => {
     const{listeQRCode,getAllQRLieu} = useContext(CovidBlockContext)
     useEffect(() =>{
-        getAllQRLieu()
+        //getAllQRLieu()
     })
     return(
         <div class="card-body">

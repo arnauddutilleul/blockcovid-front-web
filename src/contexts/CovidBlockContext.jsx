@@ -26,36 +26,65 @@ const ProviderWrapper = (props) => {
             .then(data=>{
             setEmailUtilisateur(data.email)
             setToken(data.token)
-            setType(data.type)
+            setType(type)
+            console.log("token: "+token)
+            console.log("type: "+type)
+            console.log("email :"+email_utilisateur)
+
             })
             .catch(error=>{
                 console.log("erreur inscritpion ",error)
             })
         }
         else{
-            qrService.inscrireMedecin(inscription)
+            return qrService.inscrireMedecin(inscription)
             .then(data=>{
                 setEmailUtilisateur(data.email)
                 setToken(data.token)
-                setType(data.type)
+                setType(type)
+                console.log("token: "+token)
+                console.log("type: "+type)
+                console.log("email :"+email_utilisateur)
+
             })
             .catch(error=>{
                 console.log("erreur inscritpion ",error)
             })
         }
-        
     }
     //se connecter
-    const seConnecter = (connexion) => {
-        qrService.seConnecter(connexion)
-        .then(data => {
-            setEmailUtilisateur(data.email)
-            setToken(data.token)
-            setType(data.type)
-        })
-        .catch(error=>{
-            console.log("erreur connexion ",error)
-        })
+    const seConnecter = (connexion,type) => {
+        if(type === "etablissement"){
+            qrService.seConnecterEtablissement(connexion)
+            .then(data => {
+                setEmailUtilisateur(data.email)
+                setToken(data.token)
+                setType(type)
+                console.log("token: "+token)
+                console.log("type: "+type)
+                console.log("email :"+email_utilisateur)
+
+            })
+            .catch(error=>{
+                console.log("erreur connexion ",error)
+            })
+        }
+        else{
+            qrService.seConnecterMedecin(connexion)
+            .then(data => {
+                setEmailUtilisateur(data.email)
+                setToken(data.token)
+                setType(type)
+                console.log("token: "+token)
+                console.log("type: "+type)
+                console.log("email :"+email_utilisateur)
+
+            })
+            .catch(error=>{
+                console.log("erreur connexion ",error)
+            })
+        }
+       
     }
 
     //se deconnecter
@@ -64,17 +93,26 @@ const ProviderWrapper = (props) => {
         setListQRCode()
         setType()
         setToken()
+        return true
     }
 
     //creer un qrcode pour un lieu 
     const creerQRCodeLieu = (qrcode) => {
-        qrService.creerQRCodeLieu(token,qrcode)
+        var data = {
+            token : token,
+            data : qrcode
+        }
+        qrService.creerQRCodeLieu(data)
         .then(getAllQRLieu())
         .catch(error=>{
             console.log("erreur pour créer un nouveau QRCODE ",error)
         })
     }
 
+    //Creer un qrcode pour un malade
+    const creerQRCodeMedecin = (token) => {
+        qrService.creerQRCodeMedecin(token)
+    }
 
     const exposeValue = {
         listeQRCode,
@@ -86,7 +124,8 @@ const ProviderWrapper = (props) => {
         seConnecter,
         sInscrire,
         seDeconnecter,
-        creerQRCodeLieu
+        creerQRCodeLieu,
+        creerQRCodeMedecin
     }
 
     return(
