@@ -1,13 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
-import CovidBlockContext from '../../contexts/CovidBlockContext'
 import Etablissement from '../Etablissement/Etablissement'
 import Medecin from '../Medecin/Medecin'
 
 
-const Gestion = () => {
-    const {token,type} = useContext(CovidBlockContext)
-    
+const Gestion = () => {    
     if(!localStorage.getItem("token")){// inverser tant que pas poss de connexion
         return(<Redirect to='/'/>)
        

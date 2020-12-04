@@ -1,10 +1,10 @@
-import React, { useState,useContext } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, {useContext } from 'react'
+import { Redirect, useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const Login = () => {
-    const {token,seConnecter} = useContext(CovidBlockContext)
-    const [redirection,setRedirection] = useState(false)
+    const {seConnecter} = useContext(CovidBlockContext)
+    const history = useHistory()
     const handlerSubmit = (e) => {
         e.preventDefault()
         const connexion = {
@@ -13,55 +13,51 @@ const Login = () => {
             
         }
         seConnecter(connexion,e.target.type.value)
-        .then(token => {
-            if(token){
-                setRedirection(true)
-            }
-        })
+        .then(history.push("/"))
         
     }
 
-    if(redirection || token){
+    if(localStorage.getItem("token")){
         return(
             <Redirect to="/"/>
         )
     }
     else{
         return(
-            <div class="container">
-                <div class="card">
-                    <article class="card-body">
-                        <h4 class="card-title mb-4 mt-1">Connexion</h4>
+            <div className="container">
+                <div className="card">
+                    <article className="card-body">
+                        <h4 className="card-title mb-4 mt-1">Connexion</h4>
                         <form onSubmit={handlerSubmit}>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label>Email</label>
-                                <input name="email" class="form-control" type="email"/>
+                                <input name="email" className="form-control" type="email"/>
                             </div> 
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label>Mot de passe</label>
-                                <input name="mdp" class="form-control" type="password"/>
+                                <input name="mdp" className="form-control" type="password"/>
                             </div> 
-                            <fieldset class="form-group">
-                            <div  class="row">
-                                <legend class="col-form-label col-sm-2 pt-0">Type de compte</legend>
-                                <div class="col-sm-10">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="etab" value="etablissement" defaultChecked/>
-                                        <label class="form-check-label">
+                            <fieldset className="form-group">
+                            <div  className="row">
+                                <legend className="col-form-label col-sm-2 pt-0">Type de compte</legend>
+                                <div className="col-sm-10">
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="radio" name="type" id="etab" value="etablissement" defaultChecked/>
+                                        <label className="form-check-label">
                                             Etablissement
                                         </label>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="type" id="medecin" value="medecin"/>
-                                        <label class="form-check-label" >
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="radio" name="type" id="medecin" value="medecin"/>
+                                        <label className="form-check-label" >
                                             Medecin
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-primary btn-block">Se connecter</button>
                             </div>                                                         
                         </form>
                     </article>

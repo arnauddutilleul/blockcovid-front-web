@@ -5,25 +5,19 @@ const Context = React.createContext(null)
 
 const ProviderWrapper = (props) => {
     const [listeQRCode,setListQRCode] = useState([])
-    const [email_utilisateur,setEmailUtilisateur]  = useState(localStorage.getItem("email"))
-    const [type,setType] = useState(localStorage.getItem("type"))
-    const [token,setToken] = useState(localStorage.getItem("token"))
+    const [token,setToken] = useState()
     
-    function toutEnregistrer(data) {
-        localStorage.setItem("email",data.email)
+    function toutEnregistrer(data,type) {
+        localStorage.setItem("nom",data.nom)
         localStorage.setItem("token",data.token)
         localStorage.setItem("type",type)
-        setType(type)
-        setEmailUtilisateur(data.email)
         setToken(data.token)
-        console.log("token: "+token)
-        console.log("type: "+type)
-        console.log("email :"+email_utilisateur)
+        console.log("token :"+token)
     }
 
     //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
-        qrService.getAllQRLieu(token)
+        qrService.getAllQRLieu(localStorage.getItem("token"))
         .then(liste => setListQRCode(liste))
         .catch(error=>{
             console.log("Unable to load data",error)
@@ -36,7 +30,7 @@ const ProviderWrapper = (props) => {
         if(type === "etablissement"){
             return qrService.inscrireEtablissement(inscription)
             .then(data=>{
-                toutEnregistrer(data)
+                toutEnregistrer(data,type)
             })
             .catch(error=>{
                 console.log("erreur inscritpion ",error)
@@ -45,15 +39,7 @@ const ProviderWrapper = (props) => {
         else{
             return qrService.inscrireMedecin(inscription)
             .then(data=>{
-                localStorage.setItem("email",data.email)
-                localStorage.setItem("token",data.token)
-                localStorage.setItem("type",type)
-                setType(type)
-                setEmailUtilisateur(data.email)
-                setToken(data.token)
-                console.log("token: "+token)
-                console.log("type: "+type)
-                console.log("email :"+email_utilisateur)
+                toutEnregistrer(data,type)
             })
             .catch(error=>{
                 console.log("erreur inscritpion ",error)
@@ -65,16 +51,7 @@ const ProviderWrapper = (props) => {
         if(type === "etablissement"){
             return qrService.seConnecterEtablissement(connexion)
             .then(data => {
-                localStorage.setItem("email",data.email)
-                localStorage.setItem("token",data.token)
-                localStorage.setItem("type",type)
-                setType(type)
-                setEmailUtilisateur(data.email)
-                setToken(data.token)
-                console.log("token: "+token)
-                console.log("type: "+type)
-                console.log("email :"+email_utilisateur)
-
+                toutEnregistrer(data,type)
             })
             .catch(error=>{
                 console.log("erreur connexion ",error)
@@ -83,16 +60,7 @@ const ProviderWrapper = (props) => {
         else{
             return qrService.seConnecterMedecin(connexion)
             .then(data => {
-                localStorage.setItem("email",data.email)
-                localStorage.setItem("token",data.token)
-                localStorage.setItem("type",type)
-                setType(type)
-                setEmailUtilisateur(data.email)
-                setToken(data.token)
-                console.log("token: "+token)
-                console.log("type: "+type)
-                console.log("email :"+email_utilisateur)
-
+                toutEnregistrer(data,type)
             })
             .catch(error=>{
                 console.log("erreur connexion ",error)
@@ -103,12 +71,10 @@ const ProviderWrapper = (props) => {
 
     //se deconnecter
     const seDeconnecter= () => {
-        setEmailUtilisateur()
-        setListQRCode()
-        setType()
+        setListQRCode([])
         setToken()
         localStorage.removeItem("token")
-        localStorage.removeItem("email")
+        localStorage.removeItem("nom")
         localStorage.removeItem("type")
 
         return true
@@ -117,7 +83,7 @@ const ProviderWrapper = (props) => {
     //creer un qrcode pour un lieu 
     const creerQRCodeLieu = (qrcode) => {
         var data = {
-            token : token,
+            token : localStorage.getItem("token"),
             data : qrcode
         }
         return qrService.creerQRCodeLieu(data)
@@ -134,9 +100,6 @@ const ProviderWrapper = (props) => {
 
     const exposeValue = {
         listeQRCode,
-        type,
-        token,
-        email_utilisateur,
         getAllQRLieu,
         setListQRCode,
         seConnecter,

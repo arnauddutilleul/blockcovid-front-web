@@ -4,8 +4,8 @@ import Login from '../Connexion/Connexion'
 import Inscription from '../Inscription/Inscription'
 import Gestion from '../Gestion/Gestion'
 import Header from '../Header/Header'
-import Deconnexion from '../Deconnexion/Deconnexion'
 import Accueil from '../Accueil/Accueil'
+import Footer from '../Footer/Footer'
 
 const App = () => {
     return(
@@ -21,13 +21,11 @@ const App = () => {
                 <Route path="/inscription">
                     <Inscription/>
                 </Route>
-                <Route path="/deconnexion">
-                    <Deconnexion/>
-                </Route>
                 <Route path="/">
                     <Accueil/>
                 </Route>
             </Switch>
+            <Footer/>
         </Router>
     )
 }

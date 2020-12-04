@@ -83,7 +83,7 @@ const inscrireMedecin = (data) => {
 }
 
 
-export default {
+const expose ={
     getAllQRLieu,
     creerQRCodeLieu,
     creerQRCodeMedecin,
@@ -91,4 +91,5 @@ export default {
     seConnecterMedecin,
     inscrireEtablissement,
     inscrireMedecin
-}
+};
+export default expose

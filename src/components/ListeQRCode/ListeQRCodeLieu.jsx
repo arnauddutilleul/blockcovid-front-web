@@ -10,9 +10,9 @@ const ListeQRCodeLieu = () => {
         //getAllQRLieu()
     })
     return(
-        <div class="card-body">
-            <h5 class="title mb-3 mt-4">Liste de vos QR Code</h5>
-                <table class="table">
+        <div className="card-body">
+            <h5 className="title mb-3 mt-4">Liste de vos QR Code</h5>
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Nom</th>

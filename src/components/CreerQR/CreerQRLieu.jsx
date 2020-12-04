@@ -21,18 +21,18 @@ const CreerQRLieu = () =>{
     else{
         return(
            
-                    <div class="card-body">
-                        <h5 class="title mb-4 mt-1">Création d'un nouveau QR Code</h5>
+                    <div className="card-body">
+                        <h5 className="title mb-4 mt-1">Création d'un nouveau QR Code</h5>
                         <form onSubmit={handlerSubmit}>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label>Nom du QR Code</label>
-                                <input type="text" name="nom" class="form-control"/>
+                                <input type="text" name="nom" className="form-control"/>
                             </div>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label>Description</label>
-                                <input type="text" name="description" class="form-control"/>
+                                <input type="text" name="description" className="form-control"/>
                             </div>
-                            <button type="submit" class="btn btn-primary ">Créer</button>
+                            <button type="submit" className="btn btn-primary ">Créer</button>
                         </form>
                     </div>
         )
