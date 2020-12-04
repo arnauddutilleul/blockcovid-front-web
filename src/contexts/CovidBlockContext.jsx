@@ -20,16 +20,30 @@ const ProviderWrapper = (props) => {
 
 
     //s'inscrire 
-    const sInscrire = (inscription) => {
-        qrService.sInscrire(inscription)
-        .then(data=>{
+    const sInscrire = (inscription,type) => {
+        if(type === "etablissement"){
+            return qrService.inscrireEtablissement(inscription)
+            .then(data=>{
             setEmailUtilisateur(data.email)
             setToken(data.token)
             setType(data.type)
-        })
-        .catch(error=>{
-            console.log("erreur inscritpion ",error)
-        })
+            })
+            .catch(error=>{
+                console.log("erreur inscritpion ",error)
+            })
+        }
+        else{
+            qrService.inscrireMedecin(inscription)
+            .then(data=>{
+                setEmailUtilisateur(data.email)
+                setToken(data.token)
+                setType(data.type)
+            })
+            .catch(error=>{
+                console.log("erreur inscritpion ",error)
+            })
+        }
+        
     }
     //se connecter
     const seConnecter = (connexion) => {
