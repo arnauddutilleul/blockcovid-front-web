@@ -39,7 +39,7 @@ const Login = () => {
                             </div> 
                             <div class="form-group">
                                 <label>Mot de passe</label>
-                                <input name="mpd" class="form-control" type="password"/>
+                                <input name="mdp" class="form-control" type="password"/>
                             </div> 
                             <fieldset class="form-group">
                             <div  class="row">

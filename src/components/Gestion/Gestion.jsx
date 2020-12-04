@@ -8,11 +8,11 @@ import Medecin from '../Medecin/Medecin'
 const Gestion = () => {
     const {token,type} = useContext(CovidBlockContext)
     
-    if(!(token)){// inverser tant que pas poss de connexion
+    if(!localStorage.getItem("token")){// inverser tant que pas poss de connexion
         return(<Redirect to='/'/>)
        
     }
-    else if(type === "etablissement"){
+    else if(localStorage.getItem("type") === "etablissement"){
         return(
             <Etablissement/>
         )
