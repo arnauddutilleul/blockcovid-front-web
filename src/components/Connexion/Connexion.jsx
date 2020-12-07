@@ -1,9 +1,10 @@
-import React, {useContext } from 'react'
+import React, {useContext, useState } from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const Login = () => {
     const {seConnecter} = useContext(CovidBlockContext)
+    const [notif,setNotif]  = useState()
     const history = useHistory()
     const handlerSubmit = (e) => {
         e.preventDefault()
@@ -13,7 +14,14 @@ const Login = () => {
             
         }
         seConnecter(connexion,e.target.type.value)
-        .then(history.push("/"))
+        .then(response => {
+            if(response.status !== 200 ){
+                setNotif(response.message)      
+            }
+            else{
+                history.push("/")
+            }
+        })
         
     }
 
@@ -28,6 +36,7 @@ const Login = () => {
                 <div className="card">
                     <article className="card-body">
                         <h4 className="card-title mb-4 mt-1">Connexion</h4>
+                        <h6 className="text-danger">{notif}</h6>
                         <form onSubmit={handlerSubmit}>
                             <div className="form-group">
                                 <label>Email</label>

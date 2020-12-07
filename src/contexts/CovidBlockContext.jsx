@@ -6,77 +6,48 @@ const Context = React.createContext(null)
 const ProviderWrapper = (props) => {
     const [listeQRCode,setListQRCode] = useState([])
     const [token,setToken] = useState()
-    
     function toutEnregistrer(data,type) {
         localStorage.setItem("nom",data.nom)
         localStorage.setItem("token",data.token)
         localStorage.setItem("type",type)
         setToken(data.token)
-        console.log("token :"+token)
+        
     }
 
     //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
-        qrService.getAllQRLieu(localStorage.getItem("token"))
-        .then(liste => setListQRCode(liste))
-        .catch(error=>{
-            console.log("Unable to load data",error)
-        })
+        return qrService.getAllQRLieu(localStorage.getItem("token"))
+        .then(response => {return response})
+
     }
-
-
     //s'inscrire 
     const sInscrire = (inscription,type) => {
-        if(type === "etablissement"){
-            return qrService.inscrireEtablissement(inscription)
-            .then(data=>{
-                toutEnregistrer(data,type)
-            })
-            .catch(error=>{
-                console.log("erreur inscritpion ",error)
-            })
-        }
-        else{
-            return qrService.inscrireMedecin(inscription)
-            .then(data=>{
-                toutEnregistrer(data,type)
-            })
-            .catch(error=>{
-                console.log("erreur inscritpion ",error)
-            })
-        }
+        return qrService.inscrireEtablissement(inscription,type)
+        .then(response=>{
+            if(response.status === 200){
+                toutEnregistrer(response.data,type)
+            }
+            return response
+        })
     }
     //se connecter
     const seConnecter = (connexion,type) => {
-        if(type === "etablissement"){
-            return qrService.seConnecterEtablissement(connexion)
-            .then(data => {
-                toutEnregistrer(data,type)
-            })
-            .catch(error=>{
-                console.log("erreur connexion ",error)
-            })
-        }
-        else{
-            return qrService.seConnecterMedecin(connexion)
-            .then(data => {
-                toutEnregistrer(data,type)
-            })
-            .catch(error=>{
-                console.log("erreur connexion ",error)
-            })
-        }
-       
+        return qrService.seConnecter(connexion,type)
+        .then(response => {
+            if(response.status === 200){
+                toutEnregistrer(response.data,type)   
+            }
+            return response
+        })
     }
 
     //se deconnecter
     const seDeconnecter= () => {
         setListQRCode([])
-        setToken()
         localStorage.removeItem("token")
         localStorage.removeItem("nom")
         localStorage.removeItem("type")
-
+        setToken()
         return true
     }
 

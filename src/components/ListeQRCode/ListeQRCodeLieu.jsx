@@ -2,12 +2,19 @@ import React, { useEffect } from 'react'
 import { useContext } from 'react'
 import QRCodeLieu from '../QRCodeLieu/QRCodeLieu'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
+import { useState } from 'react'
 
 
 const ListeQRCodeLieu = () => {
     const{listeQRCode,getAllQRLieu} = useContext(CovidBlockContext)
+    const [notif,setNotif] = useState()
     useEffect(() =>{
-        //getAllQRLieu()
+        getAllQRLieu()
+        .then(response => {
+            if(response.status !== 200) {
+                setNotif(response.message)
+            }
+        })
     })
     return(
         <div className="card-body">
@@ -23,6 +30,7 @@ const ListeQRCodeLieu = () => {
                         </tr>
                     </thead>
                     <tbody>
+                    <tr className="text-danger">{notif}</tr>
                         {listeQRCode.length!==0?listeQRCode.map((qr)=>(
                                 <QRCodeLieu qrcode={qr}/>
                             )):<tr>La liste est actuellement vide</tr>}
