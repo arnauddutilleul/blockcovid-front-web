@@ -7,7 +7,7 @@ const Medecin = () => {
         <div className="container">
             <div className ="card">
                 <div className="card-body">
-                    <h4 class="card-title mb-4 mt-1">Gestion Médecin</h4>
+                    <h4 className="card-title mb-4 mt-1">Gestion Médecin</h4>
                     <CreerQRCodeMedecin/>
                 </div>
             </div>

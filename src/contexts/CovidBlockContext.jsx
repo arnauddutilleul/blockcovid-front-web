@@ -22,7 +22,7 @@ const ProviderWrapper = (props) => {
     }
     //s'inscrire 
     const sInscrire = (inscription,type) => {
-        return qrService.inscrireEtablissement(inscription,type)
+        return qrService.sInscrire(inscription,type)
         .then(response=>{
             if(response.status === 200){
                 toutEnregistrer(response.data,type)
@@ -64,10 +64,18 @@ const ProviderWrapper = (props) => {
         })
     }
 
-    //Creer un qrcode pour un malade
-    const creerQRCodeMedecin = (token) => {
-        return qrService.creerQRCodeMedecin(token)
+    //Creer nombre qrcode pour un malade
+    const creerQRCodeMedecin = (nombre) => {
+        const data = {token : localStorage.getItem("token")}
+        var liste = []
+        for (let i = 0; i < nombre; i++) {
+            const qrcode = nombre//qrService.creerQRCodeMedecin(data)
+            liste = liste.concat(qrcode)
+        }
+        console.log(liste)
+        return liste
     }
+    
 
     const exposeValue = {
         listeQRCode,
@@ -78,6 +86,7 @@ const ProviderWrapper = (props) => {
         seDeconnecter,
         creerQRCodeLieu,
         creerQRCodeMedecin
+        
     }
 
     return(
