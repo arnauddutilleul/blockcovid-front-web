@@ -1,24 +1,21 @@
-import React,{ useContext, useState }  from 'react'
-import { Redirect } from 'react-router-dom'
+import React,{ useContext }  from 'react'
+import { useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const CreerQRLieu = () =>{
-    const [redirection,setRedirection] = useState(false)
-    const {creerCRCodeLieu} = useContext(CovidBlockContext)
+    const {creerQRCodeLieu} = useContext(CovidBlockContext)
+    const history = useHistory()   
     const handlerSubmit = (e) => {
         e.preventDefault()
         const qrcode = {
             nom : e.target.nom.value,
             description : e.target.description.value
         }
-        creerCRCodeLieu(qrcode)
-        setRedirection(true)
+        creerQRCodeLieu(qrcode)
+        e.target.nom.value = ""
+        e.target.description.value = ""
+        history.push("/gestion")
     }
-    
-    if(redirection){
-        return(<Redirect to="/gestion"/>)
-    }
-    else{
         return(
            
                     <div className="card-body">
@@ -36,7 +33,7 @@ const CreerQRLieu = () =>{
                         </form>
                     </div>
         )
-    }
+    
     
 }
 export default CreerQRLieu

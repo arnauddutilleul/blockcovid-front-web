@@ -22,7 +22,7 @@ const getAllQRLieu = (token) => {
     })
 }
 const creerQRCodeLieu = (data) => {
-    const request = axios.post(URI+'/creerqrlieu',data)
+    const request = axios.post(URI+'/etablissement/creerQrCode',data)
     return request 
     .then(response=>{return response})
     .catch(error => {

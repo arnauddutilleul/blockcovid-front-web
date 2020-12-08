@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet,Image } from '@react-pdf/renderer';
+import { Page, View, Document, StyleSheet,Image } from '@react-pdf/renderer';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -30,16 +30,13 @@ const styles = StyleSheet.create({
            */
 // Create Document Component
 const MyDocument = ({liste}) => {
-    console.log(liste)
-    var qrcode = liste[0]
-    console.log(liste[0])
     return(
     <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
               
-          {liste.map((qrcode) => (
-            <Image style={styles.image}  src={"data:image/png;base64,"+qrcode} />
+          {liste.map((qrcode,index) => (
+            <Image key={index} style={styles.image}  src={"data:image/png;base64,"+qrcode} />
         ))}
           </View>
         </Page>

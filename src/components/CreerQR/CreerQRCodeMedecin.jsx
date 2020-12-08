@@ -11,7 +11,6 @@ const CreerQRCodeMedecin = () => {
         creerQRCodeMedecin(e.target.nombre.value)
         .then(response => {
             setListe(response)
-            console.log(response)
         })
         
         

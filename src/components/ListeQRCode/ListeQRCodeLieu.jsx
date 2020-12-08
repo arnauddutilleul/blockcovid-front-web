@@ -19,6 +19,8 @@ const ListeQRCodeLieu = () => {
     return(
         <div className="card-body">
             <h5 className="title mb-3 mt-4">Liste de vos QR Code</h5>
+                <p className ="text-danger">{notif}</p>
+                <p>{listeQRCode.length!==0?"":"La liste est actuellement vide "}</p>
                 <table className="table">
                     <thead>
                         <tr>
@@ -30,10 +32,10 @@ const ListeQRCodeLieu = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    <tr className="text-danger">{notif}</tr>
+                        
                         {listeQRCode.length!==0?listeQRCode.map((qr)=>(
                                 <QRCodeLieu qrcode={qr}/>
-                            )):<tr>La liste est actuellement vide</tr>}
+                            )):""}
                     </tbody>
                 </table>
         </div>

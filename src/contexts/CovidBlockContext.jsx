@@ -55,7 +55,8 @@ const ProviderWrapper = (props) => {
     const creerQRCodeLieu = (qrcode) => {
         var data = {
             token : localStorage.getItem("token"),
-            data : qrcode
+            description : qrcode.description,
+            nom : qrcode.nom
         }
         return qrService.creerQRCodeLieu(data)
         .then(getAllQRLieu())
