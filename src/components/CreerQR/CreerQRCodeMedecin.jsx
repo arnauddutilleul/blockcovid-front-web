@@ -1,8 +1,6 @@
-import { PDFDownloadLink } from '@react-pdf/renderer'
 import React, { useContext } from 'react'
 import { useState } from 'react'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
-import MyDocument from '../Pdf/Pdf'
 import TelechargerPDF from '../Pdf/TelechargerPDF'
 
 const CreerQRCodeMedecin = () => {
@@ -10,8 +8,12 @@ const CreerQRCodeMedecin = () => {
     const [listeQRCodeCree,setListe] = useState([])
     const handlerSubmit = (e) => {
         e.preventDefault()
-        const qrcodes = creerQRCodeMedecin(e.target.nombre.value)
-        setListe(qrcodes)
+        creerQRCodeMedecin(e.target.nombre.value)
+        .then(response => {
+            setListe([response])
+            console.log(response)
+        })
+        
         
     }
 

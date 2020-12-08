@@ -33,7 +33,7 @@ const creerQRCodeLieu = (data) => {
     })
 }
 const creerQRCodeMedecin = (data) => {
-    const request = axios.post(URI+'/creerqrmedecin',data)
+    const request = axios.post(URI+'/medecin/creerQrCode',data)
     return request
     .then(response=>{return response.data})
     .catch(error => {

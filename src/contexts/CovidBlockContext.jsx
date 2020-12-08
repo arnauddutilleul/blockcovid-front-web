@@ -63,18 +63,20 @@ const ProviderWrapper = (props) => {
             console.log("erreur pour créer un nouveau QRCODE ",error)
         })
     }
-
+    
     //Creer nombre qrcode pour un malade
     const creerQRCodeMedecin = (nombre) => {
-        const data = {token : localStorage.getItem("token")}
-        var liste = []
-        for (let i = 0; i < nombre; i++) {
-            const qrcode = nombre//qrService.creerQRCodeMedecin(data)
-            liste = liste.concat(qrcode)
+        const data = {
+            token : localStorage.getItem("token"),
+            nombre : nombre
         }
-        console.log(liste)
-        return liste
+        
+        return qrService.creerQRCodeMedecin(data)
+        .then(response => {
+            return response.qr
+        })
     }
+    
     
 
     const exposeValue = {
