@@ -68,7 +68,7 @@ const ProviderWrapper = (props) => {
     const creerQRCodeMedecin = (nombre) => {
         const data = {
             token : localStorage.getItem("token"),
-            nombre : nombre
+            nbQr : nombre
         }
         
         return qrService.creerQRCodeMedecin(data)
