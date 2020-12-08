@@ -10,7 +10,7 @@ const CreerQRCodeMedecin = () => {
         e.preventDefault()
         creerQRCodeMedecin(e.target.nombre.value)
         .then(response => {
-            setListe([response])
+            setListe(response)
             console.log(response)
         })
         
