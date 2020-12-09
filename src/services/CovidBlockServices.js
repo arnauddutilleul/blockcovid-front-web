@@ -54,11 +54,11 @@ const creerQRCodeLieu = (data) => {
 const creerQRCodeMedecin = (data) => {
     const request = axios.post(URI+'/medecin/creerQrCode',data)
     return request
-    .then(response=>{return response.data})
+    .then(response=>{return response})
     .catch(error => {
         if(error.response){
             error.response.message  = "Erreur lors de la création de votre QRCODES"
-            return null
+            return error.response
         }
         return null
     })

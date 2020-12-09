@@ -1,5 +1,4 @@
 import React,{ useContext }  from 'react'
-import { useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const CreerQRLieu = () =>{
@@ -25,11 +24,11 @@ const CreerQRLieu = () =>{
                         <form onSubmit={handlerSubmit}>
                             <div className="form-group">
                                 <label>Nom du QR Code</label>
-                                <input type="text" name="nom" className="form-control"/>
+                                <input type="text" name="nom" className="form-control" required/>
                             </div>
                             <div className="form-group">
                                 <label>Description</label>
-                                <input type="text" name="description" className="form-control"/>
+                                <input type="text" name="description" className="form-control" required/>
                             </div>
                             <button type="submit" className="btn btn-primary ">Créer</button>
                         </form>

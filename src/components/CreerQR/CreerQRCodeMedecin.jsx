@@ -10,7 +10,9 @@ const CreerQRCodeMedecin = () => {
         e.preventDefault()
         creerQRCodeMedecin(e.target.nombre.value)
         .then(response => {
-            setListe(response)
+            if(response.status === 200){
+                setListe(response.qr)
+            }
         })
         
         
@@ -22,7 +24,7 @@ const CreerQRCodeMedecin = () => {
             <form onSubmit={handlerSubmit}>
                 <div className="form-group">
                     <label>Nombre de QR codes à créer </label>
-                    <input className="form-control" type="number" name="nombre"/>
+                    <input className="form-control" type="number" name="nombre" required/>
                 </div>
                 <button type="submit" className="btn btn-primary ">Créer QR Code</button>
                 

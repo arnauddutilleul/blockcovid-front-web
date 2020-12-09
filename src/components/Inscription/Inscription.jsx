@@ -40,21 +40,21 @@ const Inscription = () => {
                         <h4 className="card-title mb-4 mt-1">Inscription</h4>
                         <h6 className="text-danger">{notif}</h6>
                         <form onSubmit={handlerSubmit}>
-                            <div className="form-group">
+                            <div className="form-floating">
                                 <label>Nom</label>
-                                <input name="nom" className="form-control" type="text"/>
+                                <input name="nom" className="form-control " type="text" required/>
                             </div> 
                             <div className="form-group">
                                 <label>Adresse</label>
-                                <input name="adresse" className="form-control" type="text"/>
+                                <input name="adresse" className="form-control" type="text" required/>
                             </div> 
                             <div className="form-group">
                                 <label>Email</label>
-                                <input name="email" className="form-control" type="email"/>
+                                <input name="email" className="form-control" type="email" required pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,4}$"/>
                             </div> 
                             <div className="form-group">
                                 <label>Mot de passe</label>
-                                <input name="mdp" className="form-control" type="password"/>
+                                <input name="mdp" className="form-control" type="password" required/>
                             </div> 
                             <fieldset className="form-group">
                             <div  className="row">

@@ -98,7 +98,7 @@ const ProviderWrapper = (props) => {
         
         return CovidBlockService.creerQRCodeMedecin(data)
         .then(response => {
-            return response.qr
+            return response
         })
     }
     

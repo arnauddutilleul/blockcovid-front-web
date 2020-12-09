@@ -7,9 +7,7 @@ import CovidBlockContext from '../../contexts/CovidBlockContext'
 const ListeQRCodeLieu = () => {
     const{listeQRCodesLieu} = useContext(CovidBlockContext)
     var notif = "Vous n'avez pas de QR Codes."
-    //const [listeQRCode,setListeQRCode] = useState([])
     if(listeQRCodesLieu.length !== 0){
-        console.log(listeQRCodesLieu)
         notif = ""
     }
     
@@ -17,7 +15,7 @@ const ListeQRCodeLieu = () => {
         <div className="card-body">
             <h5 className="title mb-3 mt-4">Liste de vos QR Code</h5>
                 <p>{notif}</p>
-                <table className="table">
+                <table className="table align-middle table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Nom</th>
@@ -28,7 +26,6 @@ const ListeQRCodeLieu = () => {
                         </tr>
                     </thead>
                     <tbody>  
-                        {console.log(listeQRCodesLieu)}                     
                         {listeQRCodesLieu.length!==0?listeQRCodesLieu.map((qr)=>(
                                 <QRCodeLieu  key={qr.id} qrcode={qr}/>
                             )):""}

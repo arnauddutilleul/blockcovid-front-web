@@ -40,11 +40,11 @@ const Login = () => {
                         <form onSubmit={handlerSubmit}>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input name="email" className="form-control" type="email"/>
+                                <input name="email" className="form-control" type="email" required pattern="^[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+\.[A-Za-z]{2,4}$"/>
                             </div> 
                             <div className="form-group">
                                 <label>Mot de passe</label>
-                                <input name="mdp" className="form-control" type="password"/>
+                                <input name="mdp" className="form-control" type="password" required/>
                             </div> 
                             <fieldset className="form-group">
                             <div  className="row">
