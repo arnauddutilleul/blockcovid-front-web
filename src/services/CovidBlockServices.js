@@ -5,18 +5,37 @@ const URI = "https://api-blockcovid.herokuapp.com"
 
 
 const getAllQRLieu = (token) => {
-    let data = { token : token}
-    const request = axios.get(URI+'/qrcodelieu/all',data)
+    const data = {token : token}
+    const request = axios.post(URI+'/etablissement/QrCodes',data)
     return request
     .then(response=>{return response})
     .catch(error => {
         if(error.response){
+            console.log(error.response)
             error.response.message  = "Erreur lors de la récurération de vos QRCODES"
             return error.response
         }
         error.response = {
             status : 400,
             message : "Erreur lors de la récurération de vos QRCODES"
+         }
+        return error.response
+    })
+}
+
+const supprimerQRCodeLieu = (data) => {
+    const request = axios.delete(URI+'/etablissement/qrcode',data)
+    return request
+    .then(response => {return response})
+    .catch(error => {
+        if(error.response){
+            console.log(error.response)
+            error.response.message  = "Erreur lors de la suppression du QRCode"
+            return error.response
+        }
+        error.response = {
+            status : 400,
+            message : "Erreur lors de la suppression du QRCode"
          }
         return error.response
     })
@@ -73,5 +92,6 @@ const expose ={
     creerQRCodeMedecin,
     seConnecter,
     sInscrire,
+    supprimerQRCodeLieu
 };
 export default expose

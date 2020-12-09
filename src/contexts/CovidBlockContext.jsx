@@ -1,11 +1,13 @@
 import React,{useState} from 'react'
-import qrService from '../services/CovidBlockServices'
+import { useEffect } from 'react'
+import CovidBlockService from '../services/CovidBlockServices'
 
 const Context = React.createContext(null)
 
 const ProviderWrapper = (props) => {
-    const [listeQRCode,setListQRCode] = useState([])
     const [token,setToken] = useState()
+    const [listeQRCodesLieu,setListeQRCodesLieu] = useState([])
+
     function toutEnregistrer(data,type) {
         localStorage.setItem("nom",data.nom)
         localStorage.setItem("token",data.token)
@@ -13,16 +15,32 @@ const ProviderWrapper = (props) => {
         setToken(data.token)
         
     }
+    useEffect(() => {
+        if(localStorage.getItem("type") === "etablissement"){
+            getAllQRLieu().then(liste => {
+                if(listeQRCodesLieu.length !== liste.length){
+                    setListeQRCodesLieu(liste)
+                }
+            })
+        }
+        
+    })
 
+    const modifierListeQRCodeLieu = (liste) => {
+        const newList = listeQRCodesLieu.concat(liste)
+        setListeQRCodesLieu(newList)
+    }
     //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
-        return qrService.getAllQRLieu(localStorage.getItem("token"))
-        .then(response => {return response})
+        return CovidBlockService.getAllQRLieu(localStorage.getItem("token"))
+        .then(response => {
+            return response.data.qr
+        })
 
     }
     //s'inscrire 
     const sInscrire = (inscription,type) => {
-        return qrService.sInscrire(inscription,type)
+        return CovidBlockService.sInscrire(inscription,type)
         .then(response=>{
             if(response.status === 200){
                 toutEnregistrer(response.data,type)
@@ -32,10 +50,10 @@ const ProviderWrapper = (props) => {
     }
     //se connecter
     const seConnecter = (connexion,type) => {
-        return qrService.seConnecter(connexion,type)
+        return CovidBlockService.seConnecter(connexion,type)
         .then(response => {
             if(response.status === 200){
-                toutEnregistrer(response.data,type)   
+                toutEnregistrer(response.data,type)
             }
             return response
         })
@@ -43,7 +61,6 @@ const ProviderWrapper = (props) => {
 
     //se deconnecter
     const seDeconnecter= () => {
-        setListQRCode([])
         localStorage.removeItem("token")
         localStorage.removeItem("nom")
         localStorage.removeItem("type")
@@ -58,13 +75,20 @@ const ProviderWrapper = (props) => {
             description : qrcode.description,
             nom : qrcode.nom
         }
-        return qrService.creerQRCodeLieu(data)
+        return CovidBlockService.creerQRCodeLieu(data)
         .then(getAllQRLieu())
-        .catch(error=>{
-            console.log("erreur pour créer un nouveau QRCODE ",error)
-        })
     }
     
+    //Supprime un QRcodeLieu avec son id
+    const supprimerQRCodeLieu = (id) => {
+        const data = {
+            token : localStorage.getItem("token"),
+            id : id
+        }
+        return CovidBlockService.supprimerQRCodeLieu(data)
+        .then(getAllQRLieu())
+
+    }
     //Creer nombre qrcode pour un malade
     const creerQRCodeMedecin = (nombre) => {
         const data = {
@@ -72,7 +96,7 @@ const ProviderWrapper = (props) => {
             nbQr : nombre
         }
         
-        return qrService.creerQRCodeMedecin(data)
+        return CovidBlockService.creerQRCodeMedecin(data)
         .then(response => {
             return response.qr
         })
@@ -81,14 +105,18 @@ const ProviderWrapper = (props) => {
     
 
     const exposeValue = {
-        listeQRCode,
+        token,
+        listeQRCodesLieu,
         getAllQRLieu,
-        setListQRCode,
         seConnecter,
         sInscrire,
         seDeconnecter,
         creerQRCodeLieu,
-        creerQRCodeMedecin
+        supprimerQRCodeLieu,
+        creerQRCodeMedecin,
+        setListeQRCodesLieu,
+        modifierListeQRCodeLieu
+
         
     }
 

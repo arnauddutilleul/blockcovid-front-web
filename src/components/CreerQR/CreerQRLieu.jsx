@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const CreerQRLieu = () =>{
-    const {creerQRCodeLieu} = useContext(CovidBlockContext)
-    const history = useHistory()   
+    const {creerQRCodeLieu,getAllQRLieu,modifierListeQRCodeLieu} = useContext(CovidBlockContext)
     const handlerSubmit = (e) => {
         e.preventDefault()
         const qrcode = {
@@ -14,7 +13,9 @@ const CreerQRLieu = () =>{
         creerQRCodeLieu(qrcode)
         e.target.nom.value = ""
         e.target.description.value = ""
-        history.push("/gestion")
+        getAllQRLieu().then(liste => {
+            modifierListeQRCodeLieu(liste)
+        })
     }
         return(
            
