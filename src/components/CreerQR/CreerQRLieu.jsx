@@ -11,11 +11,12 @@ const CreerQRLieu = () =>{
             description : e.target.description.value
         }
         creerQRCodeLieu(qrcode)
+        .then(getAllQRLieu().then(liste => {
+            modifierListeQRCodeLieu(liste)
+        }))
         e.target.nom.value = ""
         e.target.description.value = ""
-        getAllQRLieu().then(liste => {
-            modifierListeQRCodeLieu(liste)
-        })
+        
     }
         return(
            
