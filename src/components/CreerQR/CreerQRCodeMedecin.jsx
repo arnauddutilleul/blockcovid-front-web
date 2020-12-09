@@ -27,7 +27,7 @@ const CreerQRCodeMedecin = () => {
                 <button type="submit" className="btn btn-primary ">Créer QR Code</button>
                 
             </form>
-            <TelechargerPDF liste={listeQRCodeCree}/>
+            <TelechargerPDF liste={listeQRCodeCree} nom={localStorage.getItem("type")}/>
         </div>  
     )
 }

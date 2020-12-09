@@ -14,7 +14,7 @@ const QRCodeLieu = ({qrcode}) => {
                 <td>{qrcode.nom}</td>
                 <td>{qrcode.description}</td>
                 <td><img className="qrcodesize" src={"data:image/png;base64,"+qrcode.qrCode.image} alt={"qrcode :"+qrcode.id}/></td>
-                <td><TelechargerPDF liste={[qrcode.qrCode.image]}/></td>
+                <td><TelechargerPDF liste={[qrcode.qrCode.image]} nom={qrcode.nom}/></td>
                 <td><button className="btn btn-red" onClick={handlerSupprimer}>Supprimer</button></td>
             </tr>
         </React.Fragment>
