@@ -22,7 +22,6 @@ const ListeQRCodeLieu = () => {
                                     <th scope="col">Description</th>
                                     <th scope="col">QRCode</th>
                                     <th scope="col">Télécharger</th>
-                                    <th scope="col">Supprimer</th>
                                 </tr>
                             </thead>
                             <tbody>  
