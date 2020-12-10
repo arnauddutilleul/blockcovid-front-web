@@ -10,7 +10,7 @@ const QRCodeLieu = ({qrcode}) => {
     }
     return(
         <React.Fragment>
-            <tr>
+            <tr className="text-center">
                 <td>{qrcode.nom}</td>
                 <td>{qrcode.description}</td>
                 <td><img className="qrcodesize" src={"data:image/png;base64,"+qrcode.qrCode.image} alt={"qrcode :"+qrcode.id}/></td>

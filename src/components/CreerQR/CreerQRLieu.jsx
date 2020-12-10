@@ -28,7 +28,7 @@ const CreerQRLieu = () =>{
                             </div>
                             <div className="form-group">
                                 <label>Description</label>
-                                <input type="text" name="description" className="form-control" required/>
+                                <input type="text" name="description" className="form-control" />
                             </div>
                             <button type="submit" className="btn btn-primary ">Créer</button>
                         </form>

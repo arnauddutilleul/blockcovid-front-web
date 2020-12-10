@@ -19,16 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 });
-/* CEST LUI AUI FQUT UTILISER 
- {liste.map((qrcode) => (
-               <Image style = { styles . image }  src ={qrcode.qr} />
-           ))}
 
-           <Text> {liste.map((qrcode) => (
-               qrcode
-           ))}</Text>
-           */
-// Create Document Component
 const MyDocument = ({liste}) => {
     return(
     <Document>

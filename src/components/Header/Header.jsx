@@ -5,7 +5,6 @@ import './Header.css'
 
 const Header = () => {
     const {seDeconnecter} = useContext(CovidBlockContext)
-    
     if(localStorage.getItem("token")){
         return(
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -16,7 +15,7 @@ const Header = () => {
                             <div className="nav-link">Connecté en tant que {localStorage.getItem("nom")}</div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link " href="/" onClick={seDeconnecter}>Se déconnecter</a>
+                            <a className="nav-link " href="/connexion" onClick={seDeconnecter}>Se déconnecter</a>
                         </li>
                     </ul>
                 </div>
@@ -30,10 +29,10 @@ const Header = () => {
                 <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item ">
-                            <a className="nav-link" href="/connexion">Se connecter</a>
+                            <a className="nav-link " href="/inscription">S'inscrire</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link " href="/inscription">S'inscrire</a>
+                            <a className="nav-link" href="/connexion">Se connecter</a>
                         </li>
                     </ul>
                 </div>

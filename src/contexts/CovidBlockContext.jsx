@@ -5,20 +5,24 @@ import CovidBlockService from '../services/CovidBlockServices'
 const Context = React.createContext(null)
 
 const ProviderWrapper = (props) => {
-    const [token,setToken] = useState()
+    const [refresh,setRefresh] = useState()
     const [listeQRCodesLieu,setListeQRCodesLieu] = useState([])
 
     function toutEnregistrer(data,type) {
         localStorage.setItem("nom",data.nom)
         localStorage.setItem("token",data.token)
         localStorage.setItem("type",type)
-        setToken(data.token)
+        setRefresh(data.token)
         
     }
     useEffect(() => {
+        //console.log("useEffect "+listeQRCodesLieu)
         if(localStorage.getItem("type") === "etablissement"){
             getAllQRLieu().then(liste => {
+                //console.log("useEffect if1 "+listeQRCodesLieu)
+
                 if(listeQRCodesLieu.length !== liste.length){
+                    //console.log("useEffect if2 "+listeQRCodesLieu)
                     setListeQRCodesLieu(liste)
                 }
             })
@@ -27,7 +31,8 @@ const ProviderWrapper = (props) => {
     })
 
     const modifierListeQRCodeLieu = (liste) => {
-        const newList = listeQRCodesLieu.concat(liste)
+        const newList = liste
+        //console.log("modifierListe "+liste)
         setListeQRCodesLieu(newList)
     }
     //recuperer les qrcodes appartenant à un etablissement
@@ -64,7 +69,7 @@ const ProviderWrapper = (props) => {
         localStorage.removeItem("token")
         localStorage.removeItem("nom")
         localStorage.removeItem("type")
-        setToken()
+        setRefresh()
         return true
     }
 
@@ -105,7 +110,7 @@ const ProviderWrapper = (props) => {
     
 
     const exposeValue = {
-        token,
+        refresh,
         listeQRCodesLieu,
         getAllQRLieu,
         seConnecter,
@@ -114,7 +119,6 @@ const ProviderWrapper = (props) => {
         creerQRCodeLieu,
         supprimerQRCodeLieu,
         creerQRCodeMedecin,
-        setListeQRCodesLieu,
         modifierListeQRCodeLieu
 
         

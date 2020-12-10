@@ -8,7 +8,7 @@ const TelechargerPDF = ({liste,nom}) => {
         return(
             
                 <div className="mt-2 ml-1">
-            <PDFDownloadLink document={<MyDocument liste={liste}/>} fileName={liste.length+"_qrcode_"+nom+"_"+new Date().getTime().toString()} >
+            <PDFDownloadLink document={<MyDocument liste={liste}/>} fileName={liste.length+"_qrcode_"+nom+"_"+new Date().getTime().toString()+".pdf"} >
              Télécharger PDF
                 </PDFDownloadLink>
                 </div>

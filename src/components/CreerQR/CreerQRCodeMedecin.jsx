@@ -11,10 +11,10 @@ const CreerQRCodeMedecin = () => {
         creerQRCodeMedecin(e.target.nombre.value)
         .then(response => {
             if(response.status === 200){
-                setListe(response.qr)
+                setListe(response.data.qr)
             }
         })
-        
+        e.target.nombre.value=""
         
     }
 
@@ -29,7 +29,7 @@ const CreerQRCodeMedecin = () => {
                 <button type="submit" className="btn btn-primary ">Créer QR Code</button>
                 
             </form>
-            <TelechargerPDF liste={listeQRCodeCree} nom={localStorage.getItem("type")}/>
+            <TelechargerPDF liste={listeQRCodeCree} nom={localStorage.getItem("type")+"_"+localStorage.getItem("nom")}/>
         </div>  
     )
 }

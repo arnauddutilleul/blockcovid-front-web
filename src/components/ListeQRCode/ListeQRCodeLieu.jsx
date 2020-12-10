@@ -15,22 +15,22 @@ const ListeQRCodeLieu = () => {
         <div className="card-body">
             <h5 className="title mb-3 mt-4">Liste de vos QR Code</h5>
                 <p>{notif}</p>
-                <table className="table align-middle table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">QRCode</th>
-                            <th scope="col">Télécharger</th>
-                            <th scope="col">Supprimer</th>
-                        </tr>
-                    </thead>
-                    <tbody>  
-                        {listeQRCodesLieu.length!==0?listeQRCodesLieu.map((qr)=>(
-                                <QRCodeLieu  key={qr.id} qrcode={qr}/>
-                            )):""}
-                    </tbody>
-                </table>
+                        <table className="table align-bottom table-striped">
+                            <thead>
+                                <tr className="text-center">
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">QRCode</th>
+                                    <th scope="col">Télécharger</th>
+                                    <th scope="col">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>  
+                                {listeQRCodesLieu.length!==0?listeQRCodesLieu.map((qr)=>(
+                                        <QRCodeLieu  key={qr.id} qrcode={qr}/>
+                                    )):<tr></tr>}
+                            </tbody>
+                        </table>
         </div>
     )
 }
