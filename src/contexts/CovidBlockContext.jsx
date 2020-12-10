@@ -8,13 +8,7 @@ const ProviderWrapper = (props) => {
     const [refresh,setRefresh] = useState()
     const [listeQRCodesLieu,setListeQRCodesLieu] = useState([])
 
-    function toutEnregistrer(data,type) {
-        localStorage.setItem("nom",data.nom)
-        localStorage.setItem("token",data.token)
-        localStorage.setItem("type",type)
-        setRefresh(data.token)
-        
-    }
+    
     useEffect(() => {
         if(localStorage.getItem("type") === "etablissement"){
             getAllQRLieu().then(liste => {
@@ -25,6 +19,15 @@ const ProviderWrapper = (props) => {
         }
         
     })
+
+    //enregistre les données de l'utilisateur lors de la connexion ou inscription
+    function toutEnregistrer(data,type) {
+        localStorage.setItem("nom",data.nom)
+        localStorage.setItem("token",data.token)
+        localStorage.setItem("type",type)
+        setRefresh(data.token)
+        
+    }
 
     //modifier liste des QR codes lieu
     const modifierListeQRCodeLieu = (liste) => {
