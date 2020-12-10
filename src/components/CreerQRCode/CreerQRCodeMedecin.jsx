@@ -9,12 +9,14 @@ const CreerQRCodeMedecin = () => {
     const [listeQRCodeCree,setListe] = useState([])
     const handlerSubmit = (e) => {
         e.preventDefault()
-        creerQRCodeMedecin(e.target.nombre.value)
-        .then(response => {
-            if(response.status === 200){
-                setListe(response.data.qr)
-            }
-        })
+        if(e.target.nombre.value <= 100){
+            creerQRCodeMedecin(e.target.nombre.value)
+            .then(response => {
+                if(response.status === 200){
+                    setListe(response.data.qr)
+                }
+            })
+        }
         e.target.nombre.value=""
         
     }
@@ -25,7 +27,7 @@ const CreerQRCodeMedecin = () => {
             <form onSubmit={handlerSubmit}>
                 <div className="form-group">
                     <label>Nombre de QR codes à créer </label>
-                    <input className="form-control" type="number" name="nombre" required/>
+                    <input className="form-control" type="number" name="nombre" placeholder="max 100" required/>
                 </div>
                 <button type="submit" className="btn btn-primary ">Créer QR Code</button>
                 

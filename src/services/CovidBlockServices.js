@@ -2,6 +2,7 @@ import axios from 'axios'
 
 //const URI = "http://localhost:8080"
 const URI = "https://api-blockcovid.herokuapp.com"
+//const URI = process.argv[2]
 
 //requete pour recuperer la liste des QR codes des differents lieux pour l'etablissement connecté
 const getAllQRLieu = (token) => {
