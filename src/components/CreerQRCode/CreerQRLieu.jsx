@@ -1,6 +1,7 @@
 import React,{ useContext }  from 'react'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
+//page creation de QR codes lieu pour les etablissements
 const CreerQRLieu = () =>{
     const {creerQRCodeLieu,getAllQRLieu,modifierListeQRCodeLieu} = useContext(CovidBlockContext)
     const handlerSubmit = (e) => {

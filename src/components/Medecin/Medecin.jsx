@@ -1,5 +1,5 @@
 import React from 'react'
-import CreerQRCodeMedecin from '../CreerQR/CreerQRCodeMedecin'
+import CreerQRCodeMedecin from '../CreerQRCode/CreerQRCodeMedecin'
 
 const Medecin = () => {
 

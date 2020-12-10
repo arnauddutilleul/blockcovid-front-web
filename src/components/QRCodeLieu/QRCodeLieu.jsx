@@ -1,9 +1,8 @@
-import React,{ useContext }from 'react'
-import CovidBlockContext from '../../contexts/CovidBlockContext'
+import React from 'react'
 import TelechargerPDF from '../Pdf/TelechargerPDF'
 
+//Affichage d'un QR code lieu 
 const QRCodeLieu = ({qrcode}) => {
-    const {supprimerQRCodeLieu} = useContext(CovidBlockContext)
     return(
         <React.Fragment>
             <tr className="text-center">

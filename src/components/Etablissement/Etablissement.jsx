@@ -1,6 +1,6 @@
 import React from 'react'
-import CreerQRLieu from '../CreerQR/CreerQRLieu'
-import ListeQRCodeLieu from '../ListeQRCode/ListeQRCodeLieu'
+import CreerQRLieu from '../CreerQRCode/CreerQRLieu'
+import ListeQRCodeLieu from '../ListeQRCodesLieu/ListeQRCodesLieu'
 
 const Etablissement = () => {
 

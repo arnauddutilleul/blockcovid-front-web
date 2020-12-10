@@ -3,7 +3,7 @@ import axios from 'axios'
 //const URI = "http://localhost:8080"
 const URI = "https://api-blockcovid.herokuapp.com"
 
-
+//requete pour recuperer la liste des QR codes des differents lieux pour l'etablissement connecté
 const getAllQRLieu = (token) => {
     const data = {token : token}
     const request = axios.post(URI+'/etablissement/QrCodes',data)
@@ -23,23 +23,7 @@ const getAllQRLieu = (token) => {
     })
 }
 
-const supprimerQRCodeLieu = (data) => {
-    const request = axios.delete(URI+'/etablissement/qrcode',data)
-    return request
-    .then(response => {return response})
-    .catch(error => {
-        if(error.response){
-            console.log(error.response)
-            error.response.message  = "Erreur lors de la suppression du QRCode"
-            return error.response
-        }
-        error.response = {
-            status : 400,
-            message : "Erreur lors de la suppression du QRCode"
-         }
-        return error.response
-    })
-}
+//requete pour creer un QR code lieu
 const creerQRCodeLieu = (data) => {
     const request = axios.post(URI+'/etablissement/creerQrCode',data)
     return request 
@@ -51,6 +35,8 @@ const creerQRCodeLieu = (data) => {
         }
     })
 }
+
+//requete pour creer un ou plusieurs QR codes pour les medecins
 const creerQRCodeMedecin = (data) => {
     const request = axios.post(URI+'/medecin/creerQrCode',data)
     return request
@@ -63,6 +49,8 @@ const creerQRCodeMedecin = (data) => {
         return null
     })
 }
+
+//requete permettant de se connecter 
 const seConnecter = (data,type) => {
     const request = axios.post(URI+'/'+type+'/login',data)
     return request
@@ -74,6 +62,8 @@ const seConnecter = (data,type) => {
             }
         })
 }
+
+//requete permettant de s'inscrire
 const sInscrire = (data,type) => {
     const request = axios.post(URI+'/'+type+'/create',data)
     return request
@@ -92,6 +82,5 @@ const expose ={
     creerQRCodeMedecin,
     seConnecter,
     sInscrire,
-    supprimerQRCodeLieu
 };
 export default expose

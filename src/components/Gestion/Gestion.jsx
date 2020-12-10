@@ -8,7 +8,7 @@ import CovidBlockContext from '../../contexts/CovidBlockContext'
 
 const Gestion = () => {   
     const {seDeconnecter} = useContext(CovidBlockContext) 
-    if(!localStorage.getItem("token")){// inverser tant que pas poss de connexion
+    if(!localStorage.getItem("token")){
         return(<Redirect to='/connexion'/>)
        
     }

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
+//Creation du document PDF 
 const MyDocument = ({liste}) => {
     return(
     <Document>

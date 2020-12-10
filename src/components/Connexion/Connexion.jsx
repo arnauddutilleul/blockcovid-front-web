@@ -2,6 +2,7 @@ import React, {useContext, useState } from 'react'
 import { Redirect, useHistory } from 'react-router-dom'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
+//page de connexion
 const Login = () => {
     const {seConnecter} = useContext(CovidBlockContext)
     const [notif,setNotif]  = useState()

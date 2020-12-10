@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import QRCodeLieu from '../QRCodeLieu/QRCodeLieu'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 
-
+//page listing des QR codes lieu
 const ListeQRCodeLieu = () => {
     const{listeQRCodesLieu} = useContext(CovidBlockContext)
     var notif = "Vous n'avez pas de QR Codes."

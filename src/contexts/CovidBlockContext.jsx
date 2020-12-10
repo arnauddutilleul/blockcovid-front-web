@@ -16,13 +16,9 @@ const ProviderWrapper = (props) => {
         
     }
     useEffect(() => {
-        //console.log("useEffect "+listeQRCodesLieu)
         if(localStorage.getItem("type") === "etablissement"){
             getAllQRLieu().then(liste => {
-                //console.log("useEffect if1 "+listeQRCodesLieu)
-
                 if(listeQRCodesLieu.length !== liste.length){
-                    //console.log("useEffect if2 "+listeQRCodesLieu)
                     setListeQRCodesLieu(liste)
                 }
             })
@@ -30,11 +26,12 @@ const ProviderWrapper = (props) => {
         
     })
 
+    //modifier liste des QR codes lieu
     const modifierListeQRCodeLieu = (liste) => {
         const newList = liste
-        //console.log("modifierListe "+liste)
         setListeQRCodesLieu(newList)
     }
+
     //recuperer les qrcodes appartenant à un etablissement
     const getAllQRLieu = () => {
         return CovidBlockService.getAllQRLieu(localStorage.getItem("token"))
@@ -70,7 +67,6 @@ const ProviderWrapper = (props) => {
         localStorage.removeItem("nom")
         localStorage.removeItem("type")
         setRefresh()
-        return true
     }
 
     //creer un qrcode pour un lieu 
@@ -84,16 +80,6 @@ const ProviderWrapper = (props) => {
         .then(getAllQRLieu())
     }
     
-    //Supprime un QRcodeLieu avec son id
-    const supprimerQRCodeLieu = (id) => {
-        const data = {
-            token : localStorage.getItem("token"),
-            id : id
-        }
-        return CovidBlockService.supprimerQRCodeLieu(data)
-        .then(getAllQRLieu())
-
-    }
     //Creer nombre qrcode pour un malade
     const creerQRCodeMedecin = (nombre) => {
         const data = {
@@ -117,7 +103,6 @@ const ProviderWrapper = (props) => {
         sInscrire,
         seDeconnecter,
         creerQRCodeLieu,
-        supprimerQRCodeLieu,
         creerQRCodeMedecin,
         modifierListeQRCodeLieu
 

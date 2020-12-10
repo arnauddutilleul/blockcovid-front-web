@@ -2,6 +2,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer'
 import React from 'react'
 import MyDocument from './Pdf'
 
+//Affichage du lien de téléchargement pour le fichier PDF
 const TelechargerPDF = ({liste,nom}) => {
 
     if(liste.length >0){

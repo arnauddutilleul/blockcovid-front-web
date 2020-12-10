@@ -3,6 +3,7 @@ import { useState } from 'react'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
 import TelechargerPDF from '../Pdf/TelechargerPDF'
 
+//page creation de QR codes pour les medecins 
 const CreerQRCodeMedecin = () => {
     const {creerQRCodeMedecin} = useContext(CovidBlockContext)
     const [listeQRCodeCree,setListe] = useState([])
