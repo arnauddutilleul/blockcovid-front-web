@@ -1,6 +1,6 @@
 import React, { useContext} from 'react'
 import CovidBlockContext from '../../contexts/CovidBlockContext'
-import logo from '../../images/logo198.png'
+import logo from '../../images/logo2.png'
 import './Header.css'
 
 const Header = () => {

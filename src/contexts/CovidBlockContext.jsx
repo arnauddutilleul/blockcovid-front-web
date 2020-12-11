@@ -8,7 +8,7 @@ const ProviderWrapper = (props) => {
     const [refresh,setRefresh] = useState()
     const [listeQRCodesLieu,setListeQRCodesLieu] = useState([])
 
-    
+    //recupere la liste des QR Codes lieu si nécessaire
     useEffect(() => {
         if(localStorage.getItem("type") === "etablissement"){
             getAllQRLieu().then(liste => {

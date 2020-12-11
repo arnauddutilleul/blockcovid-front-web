@@ -31,7 +31,7 @@ const creerQRCodeLieu = (data) => {
     .then(response=>{return response})
     .catch(error => {
         if(error.response){
-            error.response.message  = "Erreur lors de la création de votre QRCODES"
+            error.response.message  = "Erreur lors de la création de votre QRCODE"
             return error.response
         }
     })
@@ -44,7 +44,7 @@ const creerQRCodeMedecin = (data) => {
     .then(response=>{return response})
     .catch(error => {
         if(error.response){
-            error.response.message  = "Erreur lors de la création de votre QRCODES"
+            error.response.message  = "Erreur lors de la création de votre QRCODE"
             return error.response
         }
         return null
